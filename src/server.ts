@@ -7,3 +7,10 @@
 
 // const person: string ="Martin";
 // const count: number= 100;
+
+
+//Architectural: MVC, DI(Dependecy injection),MVP
+
+// MVS = Model View controller
+
+// Disgn pattern: MiddLeware, Decator
