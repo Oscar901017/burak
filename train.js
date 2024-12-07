@@ -1,3 +1,8 @@
+console.log("train task ishga tushdi!");
+
+
+
+
 // TASK G:
 
 // Yagona parametrga ega function tuzing.
@@ -10,14 +15,23 @@
 
 
 function getHighestIndex(arr) {
-    
-    let highestValue = Math.max(...arr);
-    
-    return arr.indexOf(highestValue);
+    if (arr.length === 0) {
+        return -1; 
+    }
+
+    let maxValue = arr[0]; 
+    let maxIndex = 0; 
+
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > maxValue) {
+            maxValue = arr[i]; 
+            maxIndex = i; 
+        }
+    }
+
+    return maxIndex; 
 }
-
 console.log(getHighestIndex([5, 21, 12, 21, 8])); 
-
 
 
 
