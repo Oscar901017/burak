@@ -1,6 +1,7 @@
 import express from  'express';
 import path from "path";
 import router from "./routar";
+import routerAdmin from './routarAdmin';
 
 /** 1- ENTERANCE **/
 
@@ -17,6 +18,8 @@ app.set('views',path.join(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 /** 4- ROUTERS **/
-app.use('/', router);
+
+app.use('/admin', routerAdmin);   // BSSR =>> Ejs da quramiz
+app.use('/', router);  // SPA =>> REACT da quramiz
 
 export default app;  // module.exports mantig'i bilan bir xil
