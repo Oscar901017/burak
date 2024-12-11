@@ -1,16 +1,19 @@
 console.log("hillo world!");
 
+
+
+
 // H-TASK: 
 
 // shunday function tuzing, u integerlardan iborat arrayni argument sifatida qabul qilib, faqat positive qiymatlarni olib string holatda return qilsin
 // MASALAN: getPositive([1, -4, 2]) return qiladi "12"
 
-function getPositive(arr) {
+// function getPositive(arr) {
     
-    return arr.filter(num => num > 0).map(num => num.toString()).join('');
-}
+//     return arr.filter(num => num > 0).map(num => num.toString()).join('');
+// }
 
-console.log(getPositive([1, -4, 2])); 
+// console.log(getPositive([1, -4, 2])); 
 
 
 
