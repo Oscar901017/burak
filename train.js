@@ -5,7 +5,7 @@
        class => PASCAL                               MemberService
        folder => KEBAB
        css => SNAKE                                  button_style
-    _Error handling
+    _Error handling */
 
 
 
