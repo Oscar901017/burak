@@ -1,14 +1,41 @@
-console.log("hillo world!");
-// H2-TASK: 
+/* project standards:
+    - logging standards
+    -Naming standards
+       function, method, variable => CAMEL case      goHome 
+       class => PASCAL                               MemberService
+       folder => KEBAB
+       css => SNAKE                                  button_style
+    _Error handling
 
-// Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
-// MASALAN: getDigits("m14i1t") return qiladi "141"
 
-function getDigits(str) {
-    return str.replace(/\D/g, '');
-}
 
-console.log(getDigits("m14i1t")); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// console.log("hillo world!");
+// // H2-TASK: 
+
+// // Shunday function tuzing, unga string argument pass bolsin. Function ushbu agrumentdagi digitlarni yangi stringda return qilsin
+// // MASALAN: getDigits("m14i1t") return qiladi "141"
+
+// function getDigits(str) {
+//     return str.replace(/\D/g, '');
+// }
+
+// console.log(getDigits("m14i1t")); 
 
 
 
