@@ -13,6 +13,10 @@ export enum Message{
     NO_DATA_FOUND = "No data found!",
     CREATE_FAILED = "Create failed!",
     UPDATE_FAILED = "Update failed!",
+
+    USED_NICK_PHONE = "you are inserting alredy used nick or phone!",
+    NO_MEMBER_NICK = "No member with that member nickn!",
+    WRONG_PASSWORD = " wrong password intered, please try again!"
 }
 
 class Errors extends Error {
