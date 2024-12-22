@@ -4,6 +4,7 @@ import MemberService from "../models/Member.service";
 import { Console } from "console";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
+import { Message } from "../libs/Errors";
 
 
 const memberService = new MemberService();
@@ -90,6 +91,25 @@ restaurantcontroller.processLogin = async (req: AdminRequest, res: Response) => 
 
     }   
 };
+
+restaurantcontroller.checkAuthsession = async (
+    req: AdminRequest, 
+    res: Response) => {
+    try {
+        console.log('checkAuthsession');
+        if(req.session?.member) 
+            res.send(`<script> alert (" ${req.session.member.memberNick} ") </script>`);
+        else res.send(`<script> alert (" ${Message.NOT_AUTHENTICATED}") </script>`);
+        
+ 
+       
+    } catch(err) {
+        console.log('Error, checkAuthsession:', err);
+        res.send(err);
+
+    }   
+};
+
 
 
 export default restaurantcontroller;
