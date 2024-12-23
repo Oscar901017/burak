@@ -1,3 +1,40 @@
+// TASK K: 
+
+// Shunday function yozing, u string qabul qilsin va string ichidagi unli harflar sonini qaytarsin.
+// MASALAN: countVowels("string") return 1;
+
+function countVowels(str) {
+   
+   const vowels = "aeiouAEIOU";
+   
+   
+   let count = 0;
+   
+   for (let i = 0; i < str.length; i++) {
+     if (vowels.includes(str[i])) {
+       count++;
+     }
+   }
+ 
+   return count;
+ }
+ 
+
+ console.log(countVowels("string")); 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // TASK J:
 
 // Shunday function tuzing, u string qabul qilsin.
@@ -9,18 +46,18 @@
 // eng uzun so'z bo'lganligi uchun 'Uzbekistan'ni qaytarmoqda
 
 
-function findLongestWord(str) {
-    const words = str.split(' ');
-    let longestWord = '';
-    for (let word of words) {
-      if (word.length > longestWord.length) {
-        longestWord = word;
-      }
-    }
-    return longestWord;
-  }
+// function findLongestWord(str) {
+//     const words = str.split(' ');
+//     let longestWord = '';
+//     for (let word of words) {
+//       if (word.length > longestWord.length) {
+//         longestWord = word;
+//       }
+//     }
+//     return longestWord;
+//   }
   
-  console.log(findLongestWord("I came from Uzbekistan!"));
+//   console.log(findLongestWord("I came from Uzbekistan!"));
   
 
 
