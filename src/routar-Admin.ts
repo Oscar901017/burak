@@ -19,9 +19,11 @@ routerAdmin
 
     /** Product */ 
 
-    routerAdmin.get("/praduct/all", productController.getAllProducts);
-    routerAdmin.post("/product/create", productController.createNewProduct);
-    routerAdmin.post("/product/:id", productController.updateChosenProduct);
+    // routerAdmin.get("/praduct/all", restaurantcontroller.verifyRestaurant, productController.getAllProducts);
+    // routerAdmin.post("/product/create", productController.createNewProduct);
+    routerAdmin.post("/product/:id",
+    restaurantcontroller.verifyRestaurant,
+     productController.updateChosenProduct);
 
 
 export default routerAdmin;
