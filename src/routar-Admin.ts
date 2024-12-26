@@ -24,17 +24,17 @@ routerAdmin
          restaurantcontroller.verifyRestaurant,
           productController.getAllProducts);
 
-    routerAdmin.post("/product/create",
+    routerAdmin.post("/product/create", productController.createNewProduct, 
         restaurantcontroller.verifyRestaurant,
         // uploadProductImage.single("productImage"),
         makeUploader("products").array("productImages", 5
-            
+             
         ),
-         productController.createNewProduct);
+         );
 
-    routerAdmin.post("/product/:id",
+    routerAdmin.post("/product/:id",productController.updateChosenProduct,
     restaurantcontroller.verifyRestaurant,
-     productController.updateChosenProduct);
+     );
 
 
-export default routerAdmin;
+export default routerAdmin; 

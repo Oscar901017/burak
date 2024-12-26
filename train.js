@@ -158,3 +158,33 @@
 // }
 
 // console.log(getHighestIndex([5, 21, 12, 21, 8])); 
+
+
+
+/*Request 
+Traditional
+Rest Api
+GraphQl
+...
+
+
+
+
+Frontend Development:
+Tradional FD  => SSR => EJS
+Modern FD  => SPA => REACT
+
+
+Cookies:
+request join
+self destory
+
+*/
+
+/* Validation lar 4ga (:)
+Fronted validation
+Pipe validation ====>>> Burak loyihasida ishlatilmaydi
+Backend validation
+Database validation
+
+*/
