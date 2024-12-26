@@ -23,6 +23,7 @@ productController.createNewProduct = async (req: Request, res: Response) => {
    
     try {
         console.log("createNewProduct");
+        res.send("DONE");
         
     } catch (err) {
         console.log("Error, createNewProduct", err);
@@ -35,6 +36,7 @@ productController.updateChosenProduct = async (req: Request, res: Response) => {
     
     try {
         console.log("updateChosenProduct");
+
         
     } catch (err) {
         console.log("Error, updateChosenProduct", err);
