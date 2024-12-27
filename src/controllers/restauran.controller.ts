@@ -4,8 +4,7 @@ import MemberService from "../models/Member.service";
 import { Console } from "console";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
-import Errors, { Message } from "../libs/Errors";
-
+import Errors, { Httpcode, Message } from "../libs/Errors";
 
 const memberService = new MemberService();
 
@@ -17,8 +16,7 @@ restaurantcontroller.goHome = (req: Request, res: Response) => {
         // send | json |redirect |end |render
     } catch(err) {
         console.log('Error, goHome:', err);
-        res.redirect("/admin");   
-
+        res.redirect("/admin");  
     }   
 };
 
@@ -29,7 +27,6 @@ restaurantcontroller.getSignup = (req: Request, res: Response) => {
     } catch(err) {
         console.log('Error, getSignup:', err);
         res.redirect("/admin");
-
     }   
 };
 
@@ -40,17 +37,17 @@ restaurantcontroller.getLogin = (req: Request, res: Response) => {
     } catch(err) {
         console.log('Error, getLogin:', err);
         res.redirect("/admin");
-
     }   
 };
-
-
 
 restaurantcontroller.processSignup = async (req: AdminRequest, res: Response) => {
     try {
         console.log('processSignup');
+        const file = req.file;
+        if (!file) throw new Errors(Httpcode.BAD_REQUIST,Message.SOMTHING_WENT_WRONG);
 
         const newMember: MemberInput = req.body;
+        newMember.memberImage = file?.path;
         newMember.memberType = MemberType.RESTAURANT;
         
         const result =  await memberService.processSignup(newMember);
@@ -58,7 +55,7 @@ restaurantcontroller.processSignup = async (req: AdminRequest, res: Response) =>
 
         req.session.member = result;
         req.session.save(function() {
-            res.send(result);
+            res.redirect("/admin/product/all");
         });
        
     } catch(err) {
@@ -66,7 +63,6 @@ restaurantcontroller.processSignup = async (req: AdminRequest, res: Response) =>
         console.log('Error, processSignup:', err);
         const message= err instanceof Errors ? err.message:Message.SOMTHING_WENT_WRONG;
         res.send(`<script> alert ("${message}"); window.location.replace('admin/signup') </script>`);
-
     }   
 };
 
@@ -75,16 +71,13 @@ restaurantcontroller.processLogin = async (req: AdminRequest, res: Response) => 
         console.log('processLogin');
      
         const input: LoginInput = req.body;
-
         
-        const result = await memberService.procossLogin(input);
-      
+        const result = await memberService.procossLogin(input);     
 
          req.session.member = result;
          req.session.save(function() {
              res.send(result);
          });
-
 
 
         res.send(result);
@@ -93,14 +86,12 @@ restaurantcontroller.processLogin = async (req: AdminRequest, res: Response) => 
         console.log('Error, processLogin:', err);
         const message= err instanceof Errors ? err.message:Message.SOMTHING_WENT_WRONG;
         res.send(`<script> alert ("${message}"); window.location.replace('admin/login') </script>`);
-
     }   
 };
 
 restaurantcontroller.logout = async (req: AdminRequest, res: Response) => {
     try {
         console.log('logout');
-        
         
        
     } catch(err) {
@@ -109,10 +100,8 @@ restaurantcontroller.logout = async (req: AdminRequest, res: Response) => {
         req.session.destroy(function() {
             res.redirect("/admin"); 
         }); 
-
     }   
 };
-
 
 restaurantcontroller.checkAuthsession = async (
     req: AdminRequest, 
@@ -121,20 +110,17 @@ restaurantcontroller.checkAuthsession = async (
         console.log('checkAuthsession');
         if(req.session?.member) 
             res.send(`<script> alert (" ${req.session.member.memberNick} ") </script>`);
-        else res.send(`<script> alert (" ${Message.NOT_AUTHENTICATED}") </script>`);
-        
+        else res.send(`<script> alert (" ${Message.NOT_AUTHENTICATED}") </script>`);       
  
        
     } catch(err) {
         console.log('Error, checkAuthsession:', err);
         res.send(err);
-
     }   
 };
 
 restaurantcontroller.verifyRestaurant = (req: AdminRequest, 
     res: Response, next: NextFunction) => {
-
        
             if(req.session?.member?.memberType === MemberType.RESTAURANT) {
                 req.member = req.session.member;
@@ -143,11 +129,8 @@ restaurantcontroller.verifyRestaurant = (req: AdminRequest,
             } else { 
                 const message = Message.NOT_AUTHENTICATED;
                  res.send(`<script> alert (" ${message}"); window.location.replace('/admin/login'); </script>`);
-
-            }
-            
-     };
-        
+            }            
+     };     
 
 
 

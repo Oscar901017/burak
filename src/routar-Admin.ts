@@ -20,7 +20,7 @@ routerAdmin
 
     /** Product */ 
 
-    routerAdmin.get("/praduct/all",
+    routerAdmin.get("/product/all",
          restaurantcontroller.verifyRestaurant,
           productController.getAllProducts);
 
