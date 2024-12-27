@@ -39,4 +39,6 @@ export interface AdminRequest extends Request {
     req: AdminRequest;
     member: Member;
     session: Session & {member:Member};
+    file: Express.Multer.File;
+    files:Express.Multer.File[];
 }

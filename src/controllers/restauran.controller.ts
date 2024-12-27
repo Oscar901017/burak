@@ -5,6 +5,7 @@ import { Console } from "console";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 import Errors, { Httpcode, Message } from "../libs/Errors";
+import { ProductInput } from "../libs/types/product";
 
 const memberService = new MemberService();
 
@@ -45,9 +46,10 @@ restaurantcontroller.processSignup = async (req: AdminRequest, res: Response) =>
         console.log('processSignup');
         const file = req.file;
         if (!file) throw new Errors(Httpcode.BAD_REQUIST,Message.SOMTHING_WENT_WRONG);
+      
 
         const newMember: MemberInput = req.body;
-        newMember.memberImage = file?.path;
+        newMember.memberImage = file?.path.replace(/\\/g, "/");  
         newMember.memberType = MemberType.RESTAURANT;
         
         const result =  await memberService.processSignup(newMember);
