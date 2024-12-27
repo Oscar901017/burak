@@ -5,7 +5,7 @@ import ProductService from "../models/Product.service";
 import { AdminRequest } from "../libs/types/member";
 import { ProductInput } from "../libs/types/product";
 
-//xconst productService = new  ProductService();
+const productService = new  ProductService();
 const productController: T = {}; 
 
 
@@ -57,7 +57,11 @@ productController.updateChosenProduct = async (req: Request, res: Response) => {
     
     try {
         console.log("updateChosenProduct");
+        const id = req.params.id;
+        
+        const result = await productService.updateChosenProduct(id,req.body)
 
+        res.status(Httpcode.OK).json({data: result});
         
     } catch (err) {
         console.log("Error, updateChosenProduct", err);
