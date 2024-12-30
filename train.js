@@ -1,50 +1,38 @@
+// TASK M: 
+
+// Shunday function yozing, u raqamlardan tashkil topgan array qabul qilsin va array ichidagi har bir raqam uchun raqamni ozi va hamda osha raqamni kvadratidan tashkil topgan object hosil qilib, hosil bolgan objectlarni array ichida qaytarsin.
+// MASALAN: getSquareNumbers([1, 2, 3]) return [{number: 1, square: 1}, {number: 2, square: 4}, {number: 3, square: 9}];
+
+function getSquareNumbers(arr) {
+   return arr.map(num => ({
+     number: num,
+     square: num * num
+   }));
+ }
+
+ console.log(getSquareNumbers([1, 2, 3]));
+
+ 
+
+
 
 // TASK L: 
 
 // Shunday function yozing, u string qabul qilsin va string ichidagi hamma sozlarni chappasiga yozib va sozlar ketma-ketligini buzmasdan stringni qaytarsin.
 // MASALAN: reverseSentence("we like coding!") return "ew ekil gnidoc";
 
-function reverseSentence(str) {
+// function reverseSentence(str) {
   
-   let words = str.split(' ');
+//    let words = str.split(' ');
    
    
-   let reversedWords = words.map(word => word.split('').reverse().join(''));
+//    let reversedWords = words.map(word => word.split('').reverse().join(''));
    
   
-   return reversedWords.join(' ');
-}
+//    return reversedWords.join(' ');
+// }
 
-console.log(reverseSentence("we like coding!")); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// console.log(reverseSentence("we like coding!")); 
 
 
 // TASK K: 
@@ -144,20 +132,7 @@ console.log(reverseSentence("we like coding!"));
 
 
 
-/* project standards:
-    - logging standards
-    -Naming standards
-       function, method, variable => CAMEL case      goHome 
-       class => PASCAL                               MemberService
-       folder => KEBAB
-       css => SNAKE                                  button_style
-    _Error handling */
 
-    /*Tradional Api
-    Rest Api
-    GraphQL Api
-    ...
-     */
 
 // console.log("hillo world!");
 // // H2-TASK: 
@@ -207,6 +182,21 @@ console.log(reverseSentence("we like coding!"));
 // }
 
 // console.log(getHighestIndex([5, 21, 12, 21, 8])); 
+
+/* project standards:
+    - logging standards
+    -Naming standards
+       function, method, variable => CAMEL case      goHome 
+       class => PASCAL                               MemberService
+       folder => KEBAB
+       css => SNAKE                                  button_style
+    _Error handling */
+
+    /*Tradional Api
+    Rest Api
+    GraphQL Api
+    ...
+     */
 
 
 
