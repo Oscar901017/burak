@@ -3,24 +3,20 @@
 // Shunday function yozing, u string qabul qilsin va string palindrom yani togri oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
 // MASALAN: palindromCheck("dad") return true;  palindromCheck("son") return false;
 
-function palindromCheck(str) {
+// function palindromCheck(str) {
    
-   let cleanedStr = str.toLowerCase().replace(/\s+/g, '');
-   
-   
-   let reversedStr = cleanedStr.split('').reverse().join('');
+//    let cleanedStr = str.toLowerCase().replace(/\s+/g, '');
    
    
-   return cleanedStr === reversedStr;
-}
+//    let reversedStr = cleanedStr.split('').reverse().join('');
+   
+   
+//    return cleanedStr === reversedStr;
+// }
 
 
-console.log(palindromCheck("dad"));  
-console.log(palindromCheck("son"));  
-
-
-
-
+// console.log(palindromCheck("dad"));  
+// console.log(palindromCheck("son"));  
 
 
 
