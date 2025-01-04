@@ -1,7 +1,7 @@
 import MemberModel from "../schema/Member.model";
-import { LoginInput, Member, MemberInput } from "../libs/types/member";
+import { LoginInput, Member, MemberInput, } from "../libs/types/member";
 import Errors, { Httpcode, Message } from "../libs/Errors";
-import { MemberType } from "../libs/enums/member.enum";
+import { memberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs";
 
 
@@ -28,10 +28,15 @@ class MemberService {
             //TODO:Consider member status later
             const member = await this.memberModel
             .findOne(
-                {memberNick: input.memberNick}, 
-                {memberNick: 1, memberPassword:1}) 
+                {memberNick: input.memberNick, memberStatus: {
+                    $ne: memberStatus.DELETE
+                },}, 
+                {memberNick: 1, memberPassword:1, memberStatus: 1}) 
             .exec();
             if (!member) throw new Errors(Httpcode.NOT_FOUND, Message.NO_MEMBER_NICK);
+            else if(member.memberStatus === memberStatus.BLOCK) {
+                throw new Errors(Httpcode.FORBIDDEN, Message.BLOCKED_USER);
+            }
 
             const isMatch =  await bcrypt.compare(
                 input.memberPassword,
