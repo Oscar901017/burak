@@ -1,15 +1,33 @@
-// TASK-Q:
+// TASK R
+
+// Shunday function yozing, u string parametrga ega bo'lsin.
+// Agar argument sifatida berilayotgan string, "1 + 2" bo'lsa,
+// string ichidagi sonlarin yig'indisni hisoblab, number holatida qaytarsin
+
+// MASALAN: calculate("1 + 3"); return 4;
+// 1 + 3 = 4, shu sababli 4 natijani qaytarmoqda.
+function calculate(str) {
+  
+  const numbers = str.split(' + ').map(Number);  
+  
+  return numbers[0] + numbers[1];
+}
+console.log(calculate("1 + 3")); 
+
+
+
+
+/**TASK-Q:
 
 // Shunday function yozing, u 2 ta parametrgga ega bolib birinchisi object, ikkinchisi string. Agar string parametr objectni propertysi bolsa true bolmasa false qaytarsin.
 // MASALAN: hasProperty({name: "BMW", model: "M3"}, "model") return true; hasProperty({name: "BMW", model: "M3"}, "year") return false
-function hasProperty(obj, prop) {
-  return obj.hasOwnProperty(prop);
-}
+// function hasProperty(obj, prop) {
+//   return obj.hasOwnProperty(prop);
+// }
 
-console.log(hasProperty({name: "BMW", model: "M3"}, "model"));  
-console.log(hasProperty({name: "BMW", model: "M3"}, "year"));  
-
-
+// console.log(hasProperty({name: "BMW", model: "M3"}, "model"));  
+// console.log(hasProperty({name: "BMW", model: "M3"}, "year"));
+ **/
 
 /**TASK-P:
 
