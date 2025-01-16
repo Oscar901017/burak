@@ -1,7 +1,45 @@
-// TASK-S:
+// TASK-T:
 
-// Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
-// MASALAN: missingNumber([3, 0, 1]) return 2
+// Shunday function yozing, u sonlardan tashkil topgan 2 ta array qabul qilsin va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin
+// MASALAN: mergeSortedArrays([0,3,4,31], [4,6,30]); return [0,3,4,4,6,30,31]
+
+function mergeSortedArrays(arr1, arr2) {
+  let mergedArray = [];
+  let i = 0, j = 0;
+
+  
+  while (i < arr1.length && j < arr2.length) {
+      if (arr1[i] < arr2[j]) {
+          mergedArray.push(arr1[i]);
+          i++;
+      } else {
+          mergedArray.push(arr2[j]);
+          j++;
+      }
+  }
+
+ 
+  while (i < arr1.length) {
+      mergedArray.push(arr1[i]);
+      i++;
+  }
+
+  while (j < arr2.length) {
+      mergedArray.push(arr2[j]);
+      j++;
+  }
+
+  return mergedArray;
+}
+
+
+console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+
+
+/** TASK-S:
+
+Shunday function yozing, u numberlardan tashkil topgan array qabul qilsin va osha numberlar orasidagi tushib qolgan sonni topib uni return qilsin
+MASALAN: missingNumber([3, 0, 1]) return 2
 
 
 function missingNumber(arr) {
@@ -19,7 +57,7 @@ function missingNumber(arr) {
 
 
 console.log(missingNumber([3, 0, 1]));  
-
+**/
 
 /** TASK R
 
@@ -111,7 +149,7 @@ function palindromCheck(str) {
 
 console.log(palindromCheck("dad"));  
 console.log(palindromCheck("son")); 
-**/ 
+**/
 
 /** TASK M: 
 
@@ -145,7 +183,7 @@ function reverseSentence(str) {
 }
 
 console.log(reverseSentence("we like coding!"));
- **/ 
+ **/
 
 /**TASK K: 
 
@@ -252,7 +290,7 @@ function getPositive(arr) {
 
 console.log(getPositive([1, -4, 2]));  **/
 
- /** TASK G:
+/** TASK G:
 
 Yagona parametrga ega function tuzing.
 Va bu function parametr orqalik integer ma'lumot turlariga ega bo'lgan bir arrayni qabul qilsin.
@@ -272,7 +310,7 @@ function getHighestIndex(arr) {
 console.log(getHighestIndex([5, 21, 12, 21, 8])); 
  **/
 
- /** project standards:
+/** project standards:
     - logging standards
     -Naming standards
        function, method, variable => CAMEL case      goHome 
@@ -281,27 +319,21 @@ console.log(getHighestIndex([5, 21, 12, 21, 8]));
        css => SNAKE                                  button_style
     _Error handling */
 
-    /*Tradional Api
+/*Tradional Api
     Rest Api
     GraphQL Api
     ...
      **/
 
-
-
-// /*Request 
+// /*Request
 // Traditional
 // Rest Api
 // GraphQl
 // ...
 
-
-
-
 // Frontend Development:
 // Tradional FD  => SSR => EJS
 // Modern FD  => SPA => REACT
-
 
 // Cookies:
 // request join
