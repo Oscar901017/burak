@@ -1,39 +1,64 @@
+// TASK-U:
+
+// Shunday function yozing, uni number parametri bolsin va 0 dan berilgan parametrgacha bolgan oraliqdagi faqat toq sonlar nechtaligini return qilsin
+// MASALAN: sumOdds(9) return 4; sumOdds(11) return 5;
+
+function sumOdds(number) {
+  let count = 0;
+  
+  for (let i = 1; i <= number; i++) {
+    if (i % 2 !== 0) {
+      count++;
+    }
+  }
+  
+  return count;
+}
+
+
+
+
+
+
+
+
+
 // TASK-T:
 
 // Shunday function yozing, u sonlardan tashkil topgan 2 ta array qabul qilsin va ikkala arraydagi sonlarni tartiblab bir arrayda qaytarsin
 // MASALAN: mergeSortedArrays([0,3,4,31], [4,6,30]); return [0,3,4,4,6,30,31]
 
-function mergeSortedArrays(arr1, arr2) {
-  let mergedArray = [];
-  let i = 0, j = 0;
+// function mergeSortedArrays(arr1, arr2) {
+//   let mergedArray = [];
+//   let i = 0, j = 0;
 
   
-  while (i < arr1.length && j < arr2.length) {
-      if (arr1[i] < arr2[j]) {
-          mergedArray.push(arr1[i]);
-          i++;
-      } else {
-          mergedArray.push(arr2[j]);
-          j++;
-      }
-  }
+//   while (i < arr1.length && j < arr2.length) {
+//       if (arr1[i] < arr2[j]) {
+//           mergedArray.push(arr1[i]);
+//           i++;
+//       } else {
+//           mergedArray.push(arr2[j]);
+//           j++;
+//       }
+//   }
 
  
-  while (i < arr1.length) {
-      mergedArray.push(arr1[i]);
-      i++;
-  }
+//   while (i < arr1.length) {
+//       mergedArray.push(arr1[i]);
+//       i++;
+//   }
 
-  while (j < arr2.length) {
-      mergedArray.push(arr2[j]);
-      j++;
-  }
+//   while (j < arr2.length) {
+//       mergedArray.push(arr2[j]);
+//       j++;
+//   }
 
-  return mergedArray;
-}
+//   return mergedArray;
+// }
 
 
-console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
+// console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
 
 
 /** TASK-S:
