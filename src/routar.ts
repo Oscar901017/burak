@@ -6,10 +6,13 @@ import memberController from "./controllers/member.controller";
 router.post("/login", memberController.login);
 router.post("/signup", memberController.signup);
 router.post("/member/logout", memberController.verifyAuth);
-router.get("/member/detail", memberController.verifyAuth);
+router.get(
+  "/member/detail",
+  memberController.verifyAuth,
+  memberController.getMemberDetail
+);
 
 /** Product **/
-
 
 /** Order **/
 export default router;
