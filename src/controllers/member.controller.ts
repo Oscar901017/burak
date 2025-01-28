@@ -49,7 +49,7 @@ memberController.login = async (req: Request, res: Response) => {
     const input: LoginInput = req.body,
       result = await memberService.login(input),
       token = await authService.createToken(result);
-    // console.log("token =>", token);
+      console.log("token =>", token);
 
     res.cookie("accessToken", token, {
       maxAge: AUTH_TIMER * 3600 * 1000,
@@ -104,6 +104,21 @@ memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
     else res.status(Errors.standart.code).json(Errors.standart);
   }
 };
+
+memberController.getTopUsers = async (req: Request, res: Response) => {
+  try {
+    console.log("getTopUsers");
+
+    const result = await memberService.getTopUsers();
+
+    res.status(Httpcode.OK).json(result);
+
+  } catch (err) {
+    console.log("Error, getTopUsers:", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standart.code).json(Errors.standart);
+  }
+}
 
 memberController.verifyAuth = async (
   req: ExtendedRequest,
