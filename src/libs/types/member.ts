@@ -32,9 +32,22 @@ export interface MemberInput {
 }
 export interface LoginInput {
     memberNick: string;
-    memberPassword: string;
+    memberPassword: string;  
     
 }
+export interface MemberUpdateInput {
+    _id:ObjectId;    
+    memberStatus?:memberStatus;
+    memberNick: string;
+    memberPhone: string;
+    memberPassword: string;
+    memberAddress?: string;
+    memberDesc?: string;
+    memberImage?: string;
+   
+}
+
+
 export interface ExtendedRequest extends Request {
     req: AdminRequest;
     member: Member;   

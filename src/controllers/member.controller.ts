@@ -6,10 +6,12 @@ import {
   LoginInput,
   Member,
   MemberInput,
+  MemberUpdateInput,
 } from "../libs/types/member";
 import Errors, { Httpcode, Message } from "../libs/Errors";
 import AuthService from "../models/Auth.service";
 import { AUTH_TIMER } from "../libs/config";
+
 
 //REACT loyihamiz uchun
 
@@ -24,6 +26,7 @@ memberController.signup = async (req: Request, res: Response) => {
     const input: MemberInput = req.body,
       result: Member = await memberService.signup(input);
     const token = await authService.createToken(result);
+    console.log("token =>", token);
 
     res.cookie("accessToken", token, {
       maxAge: AUTH_TIMER * 3600 * 1000,
@@ -46,6 +49,7 @@ memberController.login = async (req: Request, res: Response) => {
     const input: LoginInput = req.body,
       result = await memberService.login(input),
       token = await authService.createToken(result);
+    // console.log("token =>", token);
 
     res.cookie("accessToken", token, {
       maxAge: AUTH_TIMER * 3600 * 1000,
@@ -63,27 +67,41 @@ memberController.login = async (req: Request, res: Response) => {
 memberController.logout = (req: ExtendedRequest, res: Response) => {
   try {
     console.log("logout");
-    res.cookie("accessToken", null, {maxAge: 0, httpOnly: true});
-    res.status(Httpcode.OK).json({logout: true});
+    res.cookie("accessToken", null, { maxAge: 0, httpOnly: true });
+    res.status(Httpcode.OK).json({ logout: true });
   } catch (err) {
     console.log("Error, logout:", err);
     if (err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standart.code).json(Errors.standart);
-
   }
 };
 
-memberController.getMemberDetail = async (req: ExtendedRequest, res: Response) => {
+memberController.getMemberDetail = async (
+  req: ExtendedRequest,
+  res: Response
+) => {
   try {
     console.log("getMemberDetail");
     const result = await memberService.getMemberDetail(req.member);
     res.status(Httpcode.OK).json(result);
-    
   } catch (err) {
     console.log("Error, getMemberDetail:", err);
     if (err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standart.code).json(Errors.standart);
+  }
+};
 
+memberController.updateMember = async (req: ExtendedRequest, res: Response) => {
+  try {
+    console.log("updateMember");
+    const input: MemberUpdateInput = req.body;
+    if (req.file) input.memberImage = req.file.path.replace(/\\/, "/");
+    const result = await memberService.updateMember(req.member, input);
+    res.status(Httpcode.OK).json(result);
+  } catch (err) {
+    console.log("Error, updateMember:", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standart.code).json(Errors.standart);
   }
 };
 
