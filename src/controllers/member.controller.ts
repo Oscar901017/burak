@@ -12,7 +12,6 @@ import Errors, { Httpcode, Message } from "../libs/Errors";
 import AuthService from "../models/Auth.service";
 import { AUTH_TIMER } from "../libs/config";
 
-
 //REACT loyihamiz uchun
 
 const memberService = new MemberService();
@@ -20,14 +19,12 @@ const authService = new AuthService();
 
 const memberController: T = {};
 
-memberController.getRestaurant = async (req:Request, res: Response) => {  
-
+memberController.getRestaurant = async (req: Request, res: Response) => {
   try {
     console.log("getRestaurant");
     const result = await memberService.getRestaurant();
 
     res.status(Httpcode.OK).json(result);
-   
   } catch (err) {
     console.log("Error, getRestaurant", err);
     if (err instanceof Errors) res.status(err.code).json(err);
@@ -35,7 +32,7 @@ memberController.getRestaurant = async (req:Request, res: Response) => {
   }
 };
 
-  memberController.signup = async (req: Request, res: Response) => {
+memberController.signup = async (req: Request, res: Response) => {
   try {
     console.log("signup");
     const input: MemberInput = req.body,
@@ -64,7 +61,7 @@ memberController.login = async (req: Request, res: Response) => {
     const input: LoginInput = req.body,
       result = await memberService.login(input),
       token = await authService.createToken(result);
-      console.log("token =>", token);
+    console.log("token =>", token);
 
     res.cookie("accessToken", token, {
       maxAge: AUTH_TIMER * 3600 * 1000,
@@ -127,13 +124,12 @@ memberController.getTopUsers = async (req: Request, res: Response) => {
     const result = await memberService.getTopUsers();
 
     res.status(Httpcode.OK).json(result);
-
   } catch (err) {
     console.log("Error, getTopUsers:", err);
     if (err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standart.code).json(Errors.standart);
   }
-}
+};
 
 memberController.verifyAuth = async (
   req: ExtendedRequest,
