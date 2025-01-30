@@ -46,8 +46,7 @@ memberController.signup = async (req: Request, res: Response) => {
     });
 
     res.status(Httpcode.CREATED).json({ member: result, accessToken: token });
-
-    res.json({ member: result });
+       
   } catch (err) {
     console.log("Error, signup", err);
     if (err instanceof Errors) res.status(err.code).json(err);
@@ -154,10 +153,9 @@ memberController.retrievAuth = async (
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    let member = null;
+  try {  
     const token = req.cookies["accessToken"];
-    if (token) member = await authService.checkAuth(token);
+    if (token) req.member = await authService.checkAuth(token);
     next();
   } catch (err) {
     console.log("Error, retrievAuth:", err);

@@ -8,8 +8,7 @@ import productController from "./controllers/praduct.controller";
 router.get("/member/restaraunt", memberController.getRestaurant);
 router.post("/login", memberController.login);
 router.post("/signup", memberController.signup);
-router.post(
-  "/member/logout",
+router.post("/member/logout",
   memberController.verifyAuth,
   memberController.logout
 );
@@ -30,11 +29,9 @@ router.get("/member/top-users", memberController.getTopUsers);
 
 /** Product **/
 router.get("/product/all", productController.getProducts);
-router.get(
-  "/product/:id",
-  memberController.retrieveAuth,
-  productController.getProduct
- );
+// router.get("/product/:id", memberController.retrieveAuth,
+//   productController.getProduct
+// );
 
 /** Order **/
 export default router;

@@ -1,4 +1,28 @@
-// TASK-X
+// TASK Y
+
+// Shunday function yozing, uni 2'ta array parametri bo'lsin.
+// Bu function ikkala arrayda ham ishtirok etgan bir xil
+// qiymatlarni yagona arrayga joylab qaytarsin.
+
+// MASALAN: findIntersection([1,2,3], [3,2,0]) return [2,3]
+
+// Yuqoridagi misolda, argument sifatida berilayotgan array'larda
+// o'xshash sonlar mavjud. Function'ning vazifasi esa ana shu
+// ikkala array'da ishtirok etgan o'xshash sonlarni yagona arrayga
+// joylab return qilmoqda.
+
+function findIntersection(arr1, arr2) {
+  const set1 = new Set(arr1);
+  const set2 = new Set(arr2);
+
+  const intersection = [...set1].filter((item) => set2.has(item));
+
+  return intersection;
+}
+
+console.log(findIntersection([1, 2, 3], [3, 2, 0]));
+
+/**TASK-X
 
 // Shunday function yozing, uni object va string parametrlari bo'lsin.
 // Bu function, birinchi object parametri tarkibida, kalit sifatida ikkinchi string parametri
@@ -12,41 +36,40 @@
 // Funktsiya, shu ikkinchi argument 'model', birinchi argument object
 // tarkibida kalit sifatida 2 marotaba takrorlanganligi uchun 2 soni return qilmoqda
 
-function countOccurrences(obj, key) {
-  let count = 0;
+// function countOccurrences(obj, key) {
+//   let count = 0;
 
   
-  for (let prop in obj) {
+//   for (let prop in obj) {
     
-    if (typeof obj[prop] === 'object' && obj[prop] !== null) {
-      count += countOccurrences(obj[prop], key);
-    }
+//     if (typeof obj[prop] === 'object' && obj[prop] !== null) {
+//       count += countOccurrences(obj[prop], key);
+//     }
     
-    if (prop === key) {
-      count++;
-    }
-  }
+//     if (prop === key) {
+//       count++;
+//     }
+//   }
 
-  return count;
-}
+//   return count;
+// }
 
 
-console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model')); 
-
+// console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 30}}, 'model')); 
+**/
 
 // TASK-W:
 
 // Shunday function yozing, uni array va number parametrlari bolsin. Function arrayni numberda berilgan uzunlikda kesib bolaklarga ajratilgan array holatida qaytarsin
 // MASALAN: chunkArray([1,2,3,4,5,6,7,8,9,10], 3) return [[1,2,3], [4,5,6], [7,8,9], [10]]
 
-
 // function chunkArray(arr, size) {
 //   const result = [];
-  
+
 //   for (let i = 0; i < arr.length; i += size) {
 //     result.push(arr.slice(i, i + size));
 //   }
-  
+
 //   return result;
 // }
 
@@ -65,9 +88,7 @@ console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 
 //   return result;
 // }
 
-// console.log(countChars("hello")); 
-
-
+// console.log(countChars("hello"));
 
 // TASK-U:
 
@@ -76,23 +97,15 @@ console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 
 
 // function sumOdds(number) {
 //   let count = 0;
-  
+
 //   for (let i = 1; i <= number; i++) {
 //     if (i % 2 !== 0) {
 //       count++;
 //     }
 //   }
-  
+
 //   return count;
 // }
-
-
-
-
-
-
-
-
 
 // TASK-T:
 
@@ -103,7 +116,6 @@ console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 
 //   let mergedArray = [];
 //   let i = 0, j = 0;
 
-  
 //   while (i < arr1.length && j < arr2.length) {
 //       if (arr1[i] < arr2[j]) {
 //           mergedArray.push(arr1[i]);
@@ -114,7 +126,6 @@ console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 
 //       }
 //   }
 
- 
 //   while (i < arr1.length) {
 //       mergedArray.push(arr1[i]);
 //       i++;
@@ -128,9 +139,7 @@ console.log(countOccurrences({model: 'Bugatti', steer: {model: 'HANKOOK', size: 
 //   return mergedArray;
 // }
 
-
 // console.log(mergeSortedArrays([0, 3, 4, 31], [4, 6, 30]));
-
 
 /** TASK-S:
 

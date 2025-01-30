@@ -1,10 +1,31 @@
+import Errors, { Httpcode } from "../libs/Errors";
+import { View, ViewInput } from "../libs/types/view";
 import ViewModel from "../schema/View.model";
+import { Message } from "../libs/Errors";
 
 class ViewService {
-    private readonly viewModel;
+  private readonly viewModel;
 
-    constructor() {
-        this. viewModel = this.viewModel;x
+  constructor() {
+    this.viewModel = ViewModel;
+  }
+
+  public async checkViewExistence(input: ViewInput): Promise<View> {
+    return  await this.viewModel
+      .findOne({ memberId: input.memberId, viewRefId: input.viewRefId })
+      .exec();
+     
+  }
+
+  public async insertMemberView(input:ViewInput): Promise<View> {
+    try {
+      return await this.viewModel.create(input);
+
+    }catch(err) {
+      console.log("ERROR, model:insertMemberView:", err);
+      throw new Errors(Httpcode.BAD_REQUIST, Message.CREATE_FAILED);
     }
+
+  }
 }
-export default ViewService; 
+export default ViewService;

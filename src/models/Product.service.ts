@@ -7,18 +7,21 @@ import { shapeIntoMongooseObjectId } from "../libs/config";
 import { T } from "../libs/types/common";
 import { ProductStatus } from "../libs/enums/product.enum";
 import { ObjectId } from "mongoose";
+import ViewService from "./View.service";
+import { ViewInput } from "../libs/types/view";
+import { ViewGroup } from "../libs/enums/View.enum";
 
-class PraductService {
-  static updateChosenProduct(body: any) {
-    throw new Error("Method not implemented.");
-  }
+class ProductService {
   static createNewProduct(data: ProductInput) {
     throw new Error("Method not implemented.");
   }
+
   private readonly productModel;
+  public viewService;
 
   constructor() {
     this.productModel = ProductModels;
+    this.viewService = new ViewService();
   }
 
   /** SPA */
@@ -54,13 +57,39 @@ class PraductService {
   ): Promise<Product> {
     const productId = shapeIntoMongooseObjectId(id);
 
-    let result = await this.productModel.findOne({
-      _id: productId,
-      productStatus: ProductStatus.PROCESS,
-    }).exec();
+    let result = await this.productModel
+      .findOne({
+        _id: productId,
+        productStatus: ProductStatus.PROCESS,
+      })
+      .exec();
     if (!result) throw new Errors(Httpcode.NOT_FOUND, Message.NO_DATA_FOUND);
 
-    //TODO: If authenticated users => first => view log creation
+    if (memberId) {
+      // Check Existence
+      const input: ViewInput = {
+        memberId: memberId,
+        viewRefId: productId,
+        viewGroup: ViewGroup.PRODUCT,
+      };
+      const existView = await this.viewService.checkViewExistence(input);
+      console.log("exist:", !!existView);
+
+      if (!existView) {
+        // Insert View
+
+        await this.viewService.insertMemberView(input);
+        // Increase Counts
+        result = await this.productModel
+          .findByIdAndUpdate(
+            productId,
+            { $inc: { productViews: +1 } },
+            { new: true }
+          )
+          .exec();
+      }
+    }
+
     return result;
   }
 
@@ -95,4 +124,4 @@ class PraductService {
   }
 }
 
-export default PraductService;
+export default ProductService;
