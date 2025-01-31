@@ -46,7 +46,6 @@ memberController.signup = async (req: Request, res: Response) => {
     });
 
     res.status(Httpcode.CREATED).json({ member: result, accessToken: token });
-       
   } catch (err) {
     console.log("Error, signup", err);
     if (err instanceof Errors) res.status(err.code).json(err);
@@ -148,12 +147,12 @@ memberController.verifyAuth = async (
   }
 };
 
-memberController.retrievAuth = async (
+memberController.retrieveAuth = async (
   req: ExtendedRequest,
   res: Response,
   next: NextFunction
 ) => {
-  try {  
+  try {
     const token = req.cookies["accessToken"];
     if (token) req.member = await authService.checkAuth(token);
     next();
