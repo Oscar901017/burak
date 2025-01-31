@@ -2,13 +2,14 @@ import express from "express";
 const router = express.Router();
 import memberController from "./controllers/member.controller";
 import uploader from "./libs/utils/uploader";
-import productController from "./controllers/praduct.controller";
+import productController from "./controllers/product.controller";
 
 /** Member **/
 router.get("/member/restaraunt", memberController.getRestaurant);
-router.post("/login", memberController.login);
-router.post("/signup", memberController.signup);
-router.post("/member/logout",
+router.post("/member/login", memberController.login);
+router.post("/member/signup", memberController.signup);
+router.post(
+  "/member/logout",
   memberController.verifyAuth,
   memberController.logout
 );
@@ -29,7 +30,9 @@ router.get("/member/top-users", memberController.getTopUsers);
 
 /** Product **/
 router.get("/product/all", productController.getProducts);
-// router.get("/product/:id", memberController.retrieveAuth,
+// router.get(
+//   "/product/:id",
+//   memberController.retrieveAuth,
 //   productController.getProduct
 // );
 

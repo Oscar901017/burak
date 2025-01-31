@@ -1,7 +1,7 @@
 import express from  'express';
 import path from "path";
-import router from "./routar";
-import routerAdmin from './routar-Admin';
+import router from "./router";
+import routerAdmin from './routerAdmin';
 import morgan from "morgan";
 import { MORGAN_FORMAT } from './libs/config';
 import session from "express-session";

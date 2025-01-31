@@ -129,7 +129,7 @@ class MemberService {
       throw new Errors(Httpcode.BAD_REQUIST, Message.CREATE_FAILED);
     }
   }
-  public async procossLogin(input: LoginInput): Promise<Member> {
+  public async processLogin(input: LoginInput): Promise<Member> {
     const member = await this.memberModel
       .findOne(
         { memberNick: input.memberNick },
@@ -152,7 +152,7 @@ class MemberService {
     }
 
     return await this.memberModel.findById(member._id).exec();
-    return member;
+   
   }
 }
 

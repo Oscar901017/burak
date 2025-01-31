@@ -82,12 +82,11 @@ productController.createNewProduct = async (
       return ele.path.replace(/\\/g, "/");
     });
 
-    await ProductService.createNewProduct(data);
+    await productService.createNewProduct(data);
     res.send(
       `<script> alert("Sucessful creation!); window.location.replace('/admin/product/all') </script>`
     );
-    console.log("data:", data);
-    res.send("DONE");
+    console.log("data:", data);   
   } catch (err) {
     console.log("Error, createNewProduct", err);
     const message =
