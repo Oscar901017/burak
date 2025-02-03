@@ -97,6 +97,22 @@ class MemberService {
     return result;
   }
 
+  public async addUserPoint(member: Member, point: number): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+
+    return await this.memberModel
+      .findOneAndUpdate(
+        {
+          _id: memberId,
+          memberType: MemberType.USER,
+          memberStatus: memberStatus.ACTIVE,
+        },
+        { $inc: { memberPoints: point } },
+        {new: true}
+      )
+      .exec();
+  }
+
   /** SSR */
 
   public async getRestaurant(): Promise<Member> {
@@ -104,9 +120,8 @@ class MemberService {
       .findOne({ memberType: MemberType.RESTAURANT })
       .lean()
       .exec();
-      if(!result) throw new Errors(Httpcode.NOT_FOUND, Message.NO_DATA_FOUND);
-      return result;
-
+    if (!result) throw new Errors(Httpcode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
   }
 
   public async processSignup(input: MemberInput): Promise<Member> {
@@ -152,7 +167,6 @@ class MemberService {
     }
 
     return await this.memberModel.findById(member._id).exec();
-   
   }
 }
 

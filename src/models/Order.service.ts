@@ -1,19 +1,27 @@
 import OrderItemModel from "../schema/OrderItem.model";
 import OrderModel from "../schema/Order.model";
 import { Member } from "../libs/types/member";
-import { Order, OrderInquiry, OrderItemInput } from "../libs/types/order";
+import {
+  Order,
+  OrderInquiry,
+  OrderItemInput,
+  OrderUpdateInput,
+} from "../libs/types/order";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 import Errors, { Httpcode, Message } from "../libs/Errors";
 import { ObjectId } from "mongoose";
-import { orderStatus } from "../libs/enums/order.enum";
+import { OrderStatus } from "../libs/enums/order.enum";
+import MemberService from "./Member.service";
 
 class OrderService {
   private readonly orderModel;
   private readonly orderItemModel;
+  private readonly memberService;
 
   constructor() {
     this.orderModel = OrderModel;
     this.orderItemModel = OrderItemModel;
+    this.memberService = new MemberService();
   }
 
   public async createOrder(
@@ -73,12 +81,10 @@ class OrderService {
         { $limit: inquiry.limit },
         {
           $lookup: {
-            from: "orderItems", 
+            from: "orderItems",
             localField: "_id",
             foreignField: "orderId",
             as: "orderItems",
-
-
           },
         },
         {
@@ -86,13 +92,42 @@ class OrderService {
             from: "products",
             localField: "orderItems.productId",
             foreignField: "_id",
-            as: "productData"
-          }
-        }
+            as: "productData",
+          },
+        },
       ])
       .exec();
     if (!result) throw new Errors(Httpcode.NOT_FOUND, Message.NO_DATA_FOUND);
     return result;
+  }
+
+  public async updateOrder(
+    member: Member,
+    input: OrderUpdateInput
+  ): Promise<Order> {
+    const memberId = shapeIntoMongooseObjectId(member._id),
+      orderId = shapeIntoMongooseObjectId(input.orderId),
+      orderStatus = input.OrderStatus;
+
+    const result = await this.orderModel
+      .findOneAndUpdate(
+        {
+          memberId: memberId,
+          _id: orderId,
+        },
+        { orderStatus: OrderStatus },
+        { new: true }
+      )
+      .exec();
+
+      if(!result) throw new Errors(Httpcode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+      //orderStatus PAUSE => PROCESS +1  
+      if(orderStatus === OrderStatus.PROCESS) {
+        await this.memberService.addUserPoint(member, 1);
+      }
+
+      return result; 
   }
 }
 
