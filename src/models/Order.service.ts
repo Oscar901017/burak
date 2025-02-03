@@ -1,10 +1,11 @@
 import OrderItemModel from "../schema/OrderItem.model";
 import OrderModel from "../schema/Order.model";
 import { Member } from "../libs/types/member";
-import { Order, OrderItemInput } from "../libs/types/order";
+import { Order, OrderInquiry, OrderItemInput } from "../libs/types/order";
 import { shapeIntoMongooseObjectId } from "../libs/config";
 import Errors, { Httpcode, Message } from "../libs/Errors";
 import { ObjectId } from "mongoose";
+import { orderStatus } from "../libs/enums/order.enum";
 
 class OrderService {
   private readonly orderModel;
@@ -33,7 +34,7 @@ class OrderService {
       });
 
       const orderId = newOrder._id;
-      console.log("orderId:", orderId);      
+      console.log("orderId:", orderId);
       await this.recordOrderItem(orderId, input);
       return newOrder;
     } catch (err) {
@@ -52,9 +53,46 @@ class OrderService {
       await this.orderItemModel.create(item);
       return "INSERTED";
     });
-    
+
     const orderItemsState = await Promise.all(promisedList);
     console.log("orderItemsState:", orderItemsState);
+  }
+
+  public async getMyOrders(
+    member: Member,
+    inquiry: OrderInquiry
+  ): Promise<Order[]> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+    const matches = { memberId: memberId, orderStatus: inquiry.orderStatus };
+
+    const result = await this.orderModel
+      .aggregate([
+        { $match: matches },
+        { $sort: { updateAt: -1 } },
+        { $skip: (inquiry.page - 1) * inquiry.limit },
+        { $limit: inquiry.limit },
+        {
+          $lookup: {
+            from: "orderItems", 
+            localField: "_id",
+            foreignField: "orderId",
+            as: "orderItems",
+
+
+          },
+        },
+        {
+          $lookup: {
+            from: "products",
+            localField: "orderItems.productId",
+            foreignField: "_id",
+            as: "productData"
+          }
+        }
+      ])
+      .exec();
+    if (!result) throw new Errors(Httpcode.NOT_FOUND, Message.NO_DATA_FOUND);
+    return result;
   }
 }
 
