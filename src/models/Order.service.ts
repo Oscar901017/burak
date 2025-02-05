@@ -76,7 +76,7 @@ class OrderService {
     const result = await this.orderModel
       .aggregate([
         { $match: matches },
-        { $sort: { updateAt: -1 } },
+        { $sort: { updatedAt: -1 } },
         { $skip: (inquiry.page - 1) * inquiry.limit },
         { $limit: inquiry.limit },
         {
@@ -120,14 +120,14 @@ class OrderService {
       )
       .exec();
 
-      if(!result) throw new Errors(Httpcode.NOT_MODIFIED, Message.UPDATE_FAILED);
+    if (!result) throw new Errors(Httpcode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
-      //orderStatus PAUSE => PROCESS +1  
-      if(orderStatus === OrderStatus.PROCESS) {
-        await this.memberService.addUserPoint(member, 1);
-      }
+    //orderStatus PAUSE => PROCESS +1
+    if (orderStatus === OrderStatus.PROCESS) {
+      await this.memberService.addUserPoint(member, 1);
+    }
 
-      return result; 
+    return result;
   }
 }
 

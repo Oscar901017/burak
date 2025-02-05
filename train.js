@@ -1,3 +1,19 @@
+// TASK-ZB:
+
+// Shunday function yozing, uni 2 ta number parametri bolsin va berilgan sonlar orasidan random raqam return qilsin
+// MASALAN: randomBetween(30, 50) return 45
+
+
+// function randomBetween(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
+// let result = randomBetween(30, 50);
+// console.log(result);  
+
+
+
+
+
 // TASK-Z:
 
 // Shunday function yozing. Bu function sonlardan iborat array
@@ -12,19 +28,19 @@
 // berilayotgan array tarkibidagi sonlar ichidan faqatgina juft bo'lgan
 // sonlarni topib, ularni hisoblab yig'indisini qaytarmoqda.
 
-function sumEvens(arr) {
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-      if (arr[i] % 2 === 0) {  
-          sum += arr[i];  
-      }
-  }
-  return sum;  
-}
+// function sumEvens(arr) {
+//   let sum = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//       if (arr[i] % 2 === 0) {  
+//           sum += arr[i];  
+//       }
+//   }
+//   return sum;  
+// }
 
 
-console.log(sumEvens([1, 2, 3]));  
-console.log(sumEvens([1, 2, 3, 2]));  
+// console.log(sumEvens([1, 2, 3]));  
+// console.log(sumEvens([1, 2, 3, 2]));  
 
 
 
