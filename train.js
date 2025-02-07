@@ -1,18 +1,33 @@
+// TASK ZC
+
+// Selisy (°C) shkalasi bo'yicha raqam qabul qilib, uni
+// Ferenhayt (°F) shkalisaga o'zgaritib beradigan function yozing.
+
+// MASALAN: celsiusToFahrenheit(0) return 32;
+// MASALAN: celsiusToFahrenheit(10) return 50;
+
+// Yuqoridagi misolda, 0°C, 32°F'ga teng.
+// Yoki 10 gradus Selsiy, 50 Farenhaytga teng.
+
+// °C va °F => Tempraturani o'lchashda ishlatiladigan o'lchov birligi.
+
+function celsiusToFahrenheit(celsius) {
+  return (celsius * 9) / 5 + 32;
+}
+
+console.log(celsiusToFahrenheit(0));
+console.log(celsiusToFahrenheit(10));
+
 // TASK-ZB:
 
 // Shunday function yozing, uni 2 ta number parametri bolsin va berilgan sonlar orasidan random raqam return qilsin
 // MASALAN: randomBetween(30, 50) return 45
 
-
 // function randomBetween(min, max) {
 //   return Math.floor(Math.random() * (max - min + 1)) + min;
 // }
 // let result = randomBetween(30, 50);
-// console.log(result);  
-
-
-
-
+// console.log(result);
 
 // TASK-Z:
 
@@ -31,18 +46,15 @@
 // function sumEvens(arr) {
 //   let sum = 0;
 //   for (let i = 0; i < arr.length; i++) {
-//       if (arr[i] % 2 === 0) {  
-//           sum += arr[i];  
+//       if (arr[i] % 2 === 0) {
+//           sum += arr[i];
 //       }
 //   }
-//   return sum;  
+//   return sum;
 // }
 
-
-// console.log(sumEvens([1, 2, 3]));  
-// console.log(sumEvens([1, 2, 3, 2]));  
-
-
+// console.log(sumEvens([1, 2, 3]));
+// console.log(sumEvens([1, 2, 3, 2]));
 
 // TASK Y
 
