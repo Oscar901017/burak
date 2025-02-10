@@ -11,12 +11,12 @@
 
 // °C va °F => Tempraturani o'lchashda ishlatiladigan o'lchov birligi.
 
-function celsiusToFahrenheit(celsius) {
-  return (celsius * 9) / 5 + 32;
-}
+// function celsiusToFahrenheit(celsius) {
+//   return (celsius * 9) / 5 + 32;
+// }
 
-console.log(celsiusToFahrenheit(0));
-console.log(celsiusToFahrenheit(10));
+// console.log(celsiusToFahrenheit(0));
+// console.log(celsiusToFahrenheit(10));
 
 // TASK-ZB:
 
