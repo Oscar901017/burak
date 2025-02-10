@@ -13,7 +13,7 @@ export interface Member {
     memberAddress?: string;
     memberDesc?: string;
     memberImage?: string;
-    memberPoints: number;
+    memberPoints:number ;
     createdAt: Date;
     updateAt: Date;
 }
