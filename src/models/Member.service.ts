@@ -87,7 +87,7 @@ class MemberService {
     const result = await this.memberModel
       .find({
         memberStatus: memberStatus.ACTIVE,
-        memberPoints: { $gte: 1 },
+        memberPoints: { $gte: 0 },
       })
       .sort({ memberPoints: -1 })
       .limit(4)
@@ -108,7 +108,7 @@ class MemberService {
           memberStatus: memberStatus.ACTIVE,
         },
         { $inc: { memberPoints: point } },
-        {new: true}
+        { new: true }
       )
       .exec();
   }
