@@ -1,13 +1,37 @@
+// TASK-ZH:
+
+// Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
+// MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
+
+function findDisappearedNumbers(arr) {
+  let maxNum = Math.max(...arr); 
+  let result = [];
+
+  for (let i = 1; i <= maxNum; i++) {
+      if (!arr.includes(i)) { 
+          result.push(i);
+      }
+  }
+
+  return result;
+}
+
+t
+console.log(findDisappearedNumbers([1, 3, 4, 7])); 
+
+
+
+
 // TASK-ZG:
 
 // Shunday function yozing, u berilgan string parametrni snake casega otkazib qaytarsin.
 // MASALAN: capitalizeWords('name should be a string') return 'name_should_be_a_string'
 
-function capitalizeWords(str) {
-  return str.toLowerCase().replace(/\s+/g, "_");
-}
+// function capitalizeWords(str) {
+//   return str.toLowerCase().replace(/\s+/g, "_");
+// }
 
-console.log(capitalizeWords("name should be a string"));
+// console.log(capitalizeWords("name should be a string"));
 
 // TASK-ZF:
 
