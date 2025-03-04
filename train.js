@@ -1,26 +1,34 @@
-// TASK-ZH:
+// TASK-ZJ:
 
-// Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin. 
-// MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
+// Shunday function yozing, u berilgan arrayni ichidagi numberlarni qiymatini hisoblab qaytarsin.
+// MASALAN: reduceNestedArray([1, [1, 2, [4]]]) return 8
 
-function findDisappearedNumbers(arr) {
-  let maxNum = Math.max(...arr); 
-  let result = [];
-
-  for (let i = 1; i <= maxNum; i++) {
-      if (!arr.includes(i)) { 
-          result.push(i);
-      }
-  }
-
-  return result;
+function reduceNestedArray(arr) {
+  return arr.flat(Infinity).reduce((sum, num) => sum + num, 0);
 }
 
-t
-console.log(findDisappearedNumbers([1, 3, 4, 7])); 
+console.log(reduceNestedArray([1, [1, 2, [4]]]));
 
+// TASK-ZH:
 
+// Shunday function yozing, u berilgan array parametrni ichidagi eng katta raqamgacha tushib qolgan raqamlarni bir arrayda qaytarsin.
+// MASALAN: findDisappearedNumbers([1, 3, 4, 7]) return [2, 5, 6]
 
+// function findDisappearedNumbers(arr) {
+//   let maxNum = Math.max(...arr);
+//   let result = [];
+
+//   for (let i = 1; i <= maxNum; i++) {
+//       if (!arr.includes(i)) {
+//           result.push(i);
+//       }
+//   }
+
+//   return result;
+// }
+
+// t
+// console.log(findDisappearedNumbers([1, 3, 4, 7]));
 
 // TASK-ZG:
 
