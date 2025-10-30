@@ -35,14 +35,14 @@ class OrderService {
     const delivery = amount < 100 ? 5 : 0;
 
     try {
-      const newOrder: Order = await this.orderModel.create({
+      const result = await this.orderModel.create({
         orderTotal: amount + delivery,
         orderDelivery: delivery,
         memberId: memberId,
       });
 
+      const newOrder = result.toObject() as unknown as Order;
       const orderId = newOrder._id;
-      console.log("orderId:", orderId);
       await this.recordOrderItem(orderId, input);
       return newOrder;
     } catch (err) {
@@ -98,7 +98,7 @@ class OrderService {
       ])
       .exec();
     if (!result) throw new Errors(Httpcode.NOT_FOUND, Message.NO_DATA_FOUND);
-    return result;
+    return result as Order[];
   }
 
   public async updateOrder(
@@ -127,7 +127,7 @@ class OrderService {
       await this.memberService.addUserPoint(member, 1);
     }
 
-    return result;
+    return result.toObject() as unknown as Order;
   }
 }
 
