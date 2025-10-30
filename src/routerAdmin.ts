@@ -30,15 +30,28 @@ routerAdmin.get(
 
 routerAdmin.post(
   "/product/create",
-  restaurantController.verifyRestaurant,  
+  restaurantController.verifyRestaurant,
   makeUploader("products").array("productImages", 5),
-  productController.createNewProduct,
+  productController.createNewProduct
 );
 
 routerAdmin.post(
   "/product/:id",
   restaurantController.verifyRestaurant,
   productController.updateChosenProduct
+);
+
+/** User */
+routerAdmin.get(
+  "/user/all",
+  restaurantController.verifyRestaurant,
+  restaurantController.getAllUsers // ✅ To'g'ri nom
+);
+
+routerAdmin.post(
+  "/user/edit",
+  restaurantController.verifyRestaurant,
+  restaurantController.updateChosenUser
 );
 
 export default routerAdmin;

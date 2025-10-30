@@ -98,15 +98,45 @@ restaurantController.processLogin = async (
   }
 };
 
-restaurantController.logout = async (req: AdminRequest, res: Response) => {    
+restaurantController.logout = async (req: AdminRequest, res: Response) => {
   try {
-    console.log("logout" );    
+    console.log("logout");
     req.session.destroy(function () {
       res.redirect("/admin");
     });
   } catch (err) {
-    console.log("Error, logout:", err); 
-    res.redirect("/admin");    
+    console.log("Error, logout:", err);
+    res.redirect("/admin");
+  }
+};
+
+restaurantController.getAllUsers = async (req: Request, res: Response) => {
+  try {
+    console.log("getUsers");
+    const result = await memberService.getUsers();
+    console.log("result:", result);
+
+    res.render("users", { users: result });
+  } catch (err) {
+    console.log("Error, getUsers:", err);
+    res.redirect("/admin/login");
+  }
+};
+
+restaurantController.updateChosenUser = async (req: Request, res: Response) => {
+  try {
+    console.log("updateChosenUser");
+    const result = await memberService.updateChosenUser(req.body);
+    console.log("result:", result);
+
+    res.status(Httpcode.OK).json({ data: result });
+  } catch (err) {
+    console.log("Error, updateChosenUser:", err);
+    if (err instanceof Errors) res.status(err.code).json(err);
+    else
+      res
+        .status(Httpcode.INTERNAL_SERVES_ERROR)
+        .json({ message: Message.SOMTHING_WENT_WRONG });
   }
 };
 
